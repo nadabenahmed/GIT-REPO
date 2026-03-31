@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'
+    }
+
+    stages {
+        stage('Checkout code') {
+            steps {
+                git branch: 'mainBranch', url: 'https://github.com/nadabenahmed/GIT-REPO.git'
+            }
+        }
+
+        stage('Compile code') {
+            steps {
+                // Création du dossier destination s'il n'existe pas
+                sh 'javac -d bin Test.java'
+            }
+        }
+
+        stage('Execute code') {
+            steps {
+                // Exécution de la classe Test située dans le package application
+                sh 'java -cp bin application.Test'
+            }
+        }
+    }
+}
+
+
+

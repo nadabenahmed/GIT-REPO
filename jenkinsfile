@@ -25,8 +25,11 @@ pipeline {
                 sh 'java -cp bin application.Test'
             }
         }
+
+        stage('display message') {
+            steps {
+                echo 'Hello from Github'
+            }
+        }
     }
-}
-
-
-
+}      
